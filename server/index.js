@@ -32,16 +32,20 @@ io.on('connection', (socket) => {
     socket.on('join-room', (userId) => {
         // console.log('user joined', userId);
         // joining a user into a room
+        console.log("join-room");
         socket.join(userId);
     });
 
     // send message to clients (who are present in members array)
     socket.on('send-message', ({ message, members }) => {
+        console.log("send");
+
         io.to(members[0]).to(members[1]).emit('received-message', message);
         io.to(members[0]).to(members[1]).emit('update-chat-list-with-received-message', message);
     });
 
     socket.on('clear-unread-messages', ({ chatId, members }) => {
+    
         io.to(members[0]).to(members[1]).emit('unread-messages-cleared', chatId);
     });
 

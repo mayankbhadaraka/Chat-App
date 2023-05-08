@@ -9,8 +9,8 @@ import { setAllUsers, setUser, setAllChats } from '../redux/userSlice';
 import { getAllUsers, getCurrentUser } from '../api-calls/users';
 import { getAllChats } from '../api-calls/chats';
 
-const socket = io(process.env.SOCKET_IO_SERVER_URL);
-// console.log(process.env.SOCKET_IO_SERVER_URL)
+const socket = io('http://localhost:5000');
+// console.log(process.env)
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
